@@ -1,0 +1,16 @@
+// mapreduce_idea.proto
+
+syntax = "proto3";
+
+message InputData {
+  // Define your input data structure
+}
+
+message OutputData {
+  // Define your output data structure
+}
+
+service MapReduceService {
+  rpc MapFunction(InputData) returns (OutputData);
+  rpc ReduceFunction(InputData, InputData) returns (OutputData);
+}
