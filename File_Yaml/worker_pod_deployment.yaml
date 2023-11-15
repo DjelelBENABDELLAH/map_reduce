@@ -1,0 +1,22 @@
+# worker_pod_deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mapreduce-worker
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mapreduce-worker
+  template:
+    metadata:
+      labels:
+        app: mapreduce-worker
+    spec:
+      containers:
+      - name: mapreduce-worker
+        image: your-worker-pod-image:latest
+        env:
+        - name: GRPC_MASTER_NODE_ADDR
+          value: "mapreduce-master:50051"  # Use the service name of the master node
