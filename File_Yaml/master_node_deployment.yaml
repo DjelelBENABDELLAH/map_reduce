@@ -1,0 +1,22 @@
+# master_node_deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mapreduce-master
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mapreduce-master
+  template:
+    metadata:
+      labels:
+        app: mapreduce-master
+    spec:
+      containers:
+      - name: mapreduce-master
+        image: your-master-node-image:latest
+        env:
+        - name: GRPC_MASTER_NODE_ADDR
+          value: "0.0.0.0:50051"
